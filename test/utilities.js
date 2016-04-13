@@ -2,7 +2,10 @@ var mongoose = require('mongoose');
 
 function dropDatabase(done) {
     mongoose.connection.db.dropDatabase();
-    done();
+    if (done) {
+        done();
+    }
+
 }
 
 module.exports = {
