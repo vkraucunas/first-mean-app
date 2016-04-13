@@ -26,16 +26,35 @@ router.get('/:id', function(req, res, next) {
     })
 })
 
-router.delete('/', function(req, res, next) {
-    Students.remove({ firstName: 'James' }, function(err) {
+router.delete('/:id', function(req, res, next) {
+    Students.remove({ _id: req.params.id }, function(err) {
         if (err) {
             return next(err);
         }
-
         res.status(200).json({
             status: "success"
         })
     });
 })
+
+router.put('/update/:id', function(req, res, next) {
+    Students.findByIdAndUpdate( req.params.id, req.body, { new: true }, function(err, update) {
+        if (err) { return next(err) };
+        res.status(200).json({
+            status : 'success',
+            data : update
+        });
+    });
+});
+
+router.post('/', function(req, res, next){
+    var student = Students(req.body);
+    student.save(function(error, student){
+        res.status(200).json({
+         status: 'success',
+         data: student
+        });
+    });
+});
 
 module.exports = router;
