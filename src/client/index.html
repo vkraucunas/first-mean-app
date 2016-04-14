@@ -9,9 +9,9 @@
     <link rel="stylesheet" type="text/css" href="css/main.css">
   </head>
   <body>
-    <div class="container">
+    <div class="container"
+         ng-controller="addStudentController">
         <form class="form"
-              ng-controller="addStudentController"
               ng-submit="addStudent()">
             <legend>Add New Student</legend>
             <div class="form-group">
@@ -43,9 +43,36 @@
                 </select>
             </div>
             <div class="form-group">
-                <input type="submit">
+                <input type="submit" class="btn btn-warning btn-md">
             </div>
         </form>
+        <br><br>
+        <h1>Roster</h1>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>First Name</th>
+                    <th>Last Name</th>
+                    <th>Year</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="student in allStudents">
+                    <td make-editable>{{student.firstName}}</td>
+                    <td>{{student.lastName}}</td>
+                    <td>{{student.year}}</td>
+                    <td>
+                        <button class="btn btn-sm btn-info">Edit</button>
+                        <button class="btn btn-sm btn-danger"
+                                ng-click="deleteStudent(student._id)"
+                                >
+                            Delete
+                        </button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
     </div>
 
     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.10/angular.min.js"></script>

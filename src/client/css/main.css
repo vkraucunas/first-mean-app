@@ -1,6 +1,20 @@
 body {
+    background-image: url('http://static.tumblr.com/efed26415d4910d7ee32473700cc97cc/5nfkanf/NE4nmayqv/tumblr_static_2qjlyle8nakgc084448o0kc4s.jpg');
   padding: 50px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  color: white;
+}
+
+.container {
+    background-color: rgba(0,0,0,.6);
+}
+
+tbody tr:hover, td:hover {
+    background-color: rgba(43, 25, 61, .6)
+}
+
+legend {
+    color: white;
 }
 
 a {
