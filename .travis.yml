@@ -1,13 +1,19 @@
 language: node_js
-
 node_js:
-  - '5.6'
-  - '4.1'
-  - '4.0'
-  - '0.12'
-  - '0.11'
-
+- '5.6'
+- '4.1'
+- '4.0'
+- '0.12'
+- '0.11'
 services: mongodb
-
 before_script:
-  - npm install -g mocha
+- npm install -g mocha
+deploy:
+  provider: heroku
+  api_key:
+    secure: sJJJBa2VlAA2SB2HzvAnsBoo84W+beEFFiPsr5gziTpqFb0fvHWyIIZm50Z/avA2PyXSeWt7DVLQLUHUsFutzIpWc6BwHicttDu9ROud9rous/lTxWgs42FRVlR7RsdO0WI2lfWZccyqBEchCvuJ77798gHGJQd5FHoE2wfD5NWwBmg9Azpw1x0kebfO7aIsys7y29sN3ENH5rWD2OAMXvWXaK7FunlU2+wKHz8UHo1CD+LJlP1JvvvxCT5bZ7+W5GCG9Y8S/eQRysekGHF9AGrXY42k0QzgeHRY1fNDGJQN6VAQrZAWXlVgf3aovTiH+Z3+eIDcZfCq89+aZATU+X5bMNGtpnB2/cNzEuFFvu6poFDuROHFu/QtoalYIW81UVdgQfCpiGxMFy2NzlDzir77bWpWykuuygucLTnXevSxvF6CKWk+coBuXjxpyPWoMbs5fHhS9gNFk26VxGR2jtYPnJPUPZkGw+Mci/mpS5r5ZWhPNm4UByH/1GCdHMuAB3gZDayDrhKWZB4gGt1Y5PmhgQy0j1NZrJlZARtcMujWlQrxrbunJ5JLO388ThRNEvuJpmpOt8mLFRoZZErKtZlKfytirqq86ioOUKgUriV7ggKp0P8plgPf8a4+yHUltxmf7CgWGxqKDrQeJ+wLjRZpdwngBm+lLkOpIJuDd8E=
+  app: secret-hollows-84612
+  on:
+    branch: master
+    node: '5.6'
+    repo: vkraucunas/first-mean-app
