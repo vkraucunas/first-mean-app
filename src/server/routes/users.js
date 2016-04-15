@@ -20,7 +20,7 @@ router.post('/register', function(req, res, next) {
         }
         var newUser = new User(req.body);
         newUser.save(function() {
-            var token = config.genToken(newUser);
+            var token = genToken(newUser);
 
             res.status(200).json({
                 status: 'success',

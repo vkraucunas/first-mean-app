@@ -24,25 +24,41 @@ var addStudentController = function($scope, studentDataService) {
         $scope.refresh();
     }
 }
-
-var registerController = function($scope) {
+// ++++++++++++++++++++++++++++ register controller
+var registerController = function($scope, $location, authService) {
     $scope.user = {};
     $scope.register = function() {
-        console.log($scope.user);
+        authService.register($scope.user)
+            .then(function(user) {
+                authService.setUserInfo(user);
+                $location.path('/');
+            })
+            .catch(function(err) {
+                // check status code, send approps message
+                console.log(err);
+            })
     }
 }
-
-var loginController = function($scope) {
+// @@@@@@@@@@@@@@@@@@@@@@@@@@@@@ login controller
+var loginController = function($scope, $location, authService) {
     $scope.user = {};
     $scope.login = function() {
-        console.log($scope.user);
+        authService.login($scope.user)
+            .then(function(user) {
+                authService.setUserInfo(user);
+                $location.path('/');
+            })
+            .catch(function(err) {
+                // check status code, send approps message
+                console.log(err);
+            })
     }
 }
 
 // $injections =============================================================
 addStudentController.$inject = ['$scope', 'studentDataService'];
-registerController.$inject = ['$scope'];
-loginController.$inject = ['$scope'];
+registerController.$inject = ['$scope', '$location', 'authService'];
+loginController.$inject = ['$scope', '$location', 'authService'];
 
 // adding controller to app ================================================
 app.controller('addStudentController', addStudentController);
