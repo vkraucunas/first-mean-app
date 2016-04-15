@@ -33,7 +33,7 @@ describe('students routes', function() {
                 res.body.should.have.property('data');
                 res.body.status.should.equal('success');
                 res.body.data.should.be.a('array');
-                res.body.data.length.should.equal(2);
+                res.body.data.length.should.equal(1);
                 res.body.data[0].firstName.should.equal('James');
                 res.body.data[0].lastName.should.equal('Gibson');
                 res.body.data[0].year.should.equal(2005);

@@ -25,8 +25,26 @@ var addStudentController = function($scope, studentDataService) {
     }
 }
 
+var registerController = function($scope) {
+    $scope.user = {};
+    $scope.register = function() {
+        console.log($scope.user);
+    }
+}
+
+var loginController = function($scope) {
+    $scope.user = {};
+    $scope.login = function() {
+        console.log($scope.user);
+    }
+}
+
 // $injections =============================================================
 addStudentController.$inject = ['$scope', 'studentDataService'];
+registerController.$inject = ['$scope'];
+loginController.$inject = ['$scope'];
 
 // adding controller to app ================================================
 app.controller('addStudentController', addStudentController);
+app.controller('registerController', registerController);
+app.controller('loginController', loginController);
