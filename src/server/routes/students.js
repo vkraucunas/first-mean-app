@@ -3,58 +3,69 @@ var router = express.Router();
 var Students = require('../models/students');
 
 router.get('/', function(req, res, next) {
-    Students.find({}, function(err, students) {
-        if (err) {
-            return next(err);
-        }
-        res.status(200).json({
-            status: "success",
-            data: students
-        });
-    });
+    Students.find({})
+        .then(function(students) {
+            res.status(200).json({
+                status: "success",
+                data: students
+            })
+        })
+        .catch(function(error) {
+            return next(error);
+        })
 });
 
 router.get('/:id', function(req, res, next) {
-    Students.find({_id: req.params.id}, function(err, student) {
-        if (err) {
-            return next(err);
-        }
-        res.status(200).json({
-            status: "success",
-            data: student
+    Students.find({_id: req.params.id})
+        .then(function(student) {
+            res.status(200).json({
+                status: "success",
+                data: student
+            })
         })
-    })
+        .catch(function(err) {
+            return next(err);
+        })
 })
 
 router.delete('/:id', function(req, res, next) {
-    Students.remove({ _id: req.params.id }, function(err) {
-        if (err) {
-            return next(err);
-        }
-        res.status(200).json({
-            status: "success"
+    Students.remove({ _id: req.params.id })
+        .then(function() {
+            res.status(200).json({
+                status: "success"
+            })
         })
-    });
+        .catch(function(err) {
+            return next(err);
+        });
 })
 
 router.put('/update/:id', function(req, res, next) {
-    Students.findByIdAndUpdate( req.params.id, req.body, { new: true }, function(err, update) {
-        if (err) { return next(err) };
-        res.status(200).json({
-            status : 'success',
-            data : update
-        });
-    });
+    Students.findByIdAndUpdate( req.params.id, req.body, { new: true })
+        .then(function(update) {
+            res.status(200).json({
+                status : 'success',
+                data : update
+            });
+
+        })
+        .catch(function(err) {
+            return next(err);
+        })
 });
 
 router.post('/', function(req, res, next){
     var student = Students(req.body);
-    student.save(function(error, student){
-        res.status(200).json({
-         status: 'success',
-         data: student
-        });
-    });
+    student.save()
+        .then(function(student) {
+            res.status(200).json({
+                status: 'success',
+                data: student
+            });
+        })
+        .catch(function(err) {
+            return next(err);
+        })
 });
 
 module.exports = router;
