@@ -27,15 +27,13 @@ describe('students routes', function() {
             .get('/students')
             .end(function(err, res) {
                 res.should.have.status(200);
-                // res.should.be.json;
-                // or
                 res.type.should.equal('application/json');
                 res.body.should.be.a('object');
                 res.body.should.have.property('status');
                 res.body.should.have.property('data');
                 res.body.status.should.equal('success');
                 res.body.data.should.be.a('array');
-                res.body.data.length.should.equal(1);
+                res.body.data.length.should.equal(2);
                 res.body.data[0].firstName.should.equal('James');
                 res.body.data[0].lastName.should.equal('Gibson');
                 res.body.data[0].year.should.equal(2005);

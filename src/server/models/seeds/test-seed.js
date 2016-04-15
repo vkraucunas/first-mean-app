@@ -14,9 +14,13 @@ function runSeed(done) {
     //     Students.insert(el);
     // });
     var student = new Student (data[0]);
-    student.save(function(err, res) {
-        done();
-    });
+    student.save()
+        .then(function() {
+            done();
+        })
+       .catch(function(err) {
+            return next(err);
+       })
 };
 
 module.exports = {
